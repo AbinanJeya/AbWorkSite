@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AbWork — Your AI-Powered Fitness Companion</title>
+    <meta name="description" content="AbWork is the ultimate fitness app with AI-powered nutrition coaching, workout tracking, step counting, sleep analysis, and wearable integration. Train smarter, not harder.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="../FitAI/assets/favicon.png">
+</head>
+<body>
+    <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+    <nav class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="#" class="nav__logo">
+                <div class="nav__logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                    </svg>
+                </div>
+                <span class="nav__logo-text">AbWork</span>
+            </a>
+            <div class="nav__links" id="navLinks">
+                <a href="#features" class="nav__link">Features</a>
+                <a href="#ai" class="nav__link">AI Coach</a>
+                <a href="#screenshots" class="nav__link">Preview</a>
+                <a href="#download" class="nav__link nav__link--cta">Download Free</a>
+            </div>
+            <button class="nav__hamburger" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════ HERO SECTION ═══════════════════ -->
+    <section class="hero" id="hero">
+        <div class="hero__bg-glow"></div>
+        <div class="hero__bg-grid"></div>
+        <div class="hero__content">
+            <div class="hero__text">
+                <div class="hero__badge animate-in">
+                    <span class="hero__badge-dot"></span>
+                    AI-Powered Fitness
+                </div>
+                <h1 class="hero__title animate-in">
+                    Train Smarter.<br>
+                    <span class="hero__title-accent">Track Everything.</span>
+                </h1>
+                <p class="hero__subtitle animate-in">
+                    AbWork is your all-in-one fitness companion — AI nutrition coaching, 
+                    workout planning, step tracking, sleep analysis, and wearable sync. 
+                    All in one beautifully designed app.
+                </p>
+                <div class="hero__cta-row animate-in">
+                    <a href="#download" class="btn btn--primary btn--lg">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        Download Free
+                    </a>
+                    <a href="#features" class="btn btn--ghost btn--lg">
+                        Explore Features
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+                    </a>
+                </div>
+                <div class="hero__stats animate-in">
+                    <div class="hero__stat">
+                        <span class="hero__stat-value">800+</span>
+                        <span class="hero__stat-label">Exercises</span>
+                    </div>
+                    <div class="hero__stat-divider"></div>
+                    <div class="hero__stat">
+                        <span class="hero__stat-value">AI</span>
+                        <span class="hero__stat-label">Powered</span>
+                    </div>
+                    <div class="hero__stat-divider"></div>
+                    <div class="hero__stat">
+                        <span class="hero__stat-value">100%</span>
+                        <span class="hero__stat-label">Free</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero__phone animate-in">
+                <div class="hero__phone-frame">
+                    <div class="hero__phone-notch"></div>
+                    <div class="hero__phone-screen" id="heroScreenPlaceholder">
+                        <!-- User will supply screenshot — placeholder for now -->
+                        <div class="phone-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48">
+                                <rect x="2" y="3" width="20" height="18" rx="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <path d="M21 15l-5-5L5 21"/>
+                            </svg>
+                            <span>App Screenshot</span>
+                            <span class="phone-placeholder-sub">Will be added soon</span>
+                        </div>
+                    </div>
+                    <div class="hero__phone-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ FEATURES SECTION ═══════════════════ -->
+    <section class="features" id="features">
+        <div class="features__container">
+            <div class="section-header animate-in">
+                <span class="section-tag">FEATURES</span>
+                <h2 class="section-title">Everything You Need to<br><span class="text-accent">Crush Your Goals</span></h2>
+                <p class="section-subtitle">Powerful tools that work together seamlessly to help you build the body and habits you've always wanted.</p>
+            </div>
+            <div class="features__grid">
+                <!-- Feature 1 -->
+                <div class="feature-card animate-in" id="feature-workouts">
+                    <div class="feature-card__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="28" height="28">
+                            <path d="M6.5 6.5l11 11M21 3l-8.5 8.5M3 21l8.5-8.5M14.5 6l-5 5M18 9.5l-5 5"/>
+                            <path d="M3.5 20.5l3-3M20.5 3.5l-3 3"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-card__title">Workout Tracker</h3>
+                    <p class="feature-card__desc">Log every set, rep, and weight. Over 800+ exercises with detailed instructions and automatic progress tracking.</p>
+                    <div class="feature-card__glow"></div>
+                </div>
+                <!-- Feature 2 -->
+                <div class="feature-card animate-in" id="feature-ai">
+                    <div class="feature-card__icon feature-card__icon--ai">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="28" height="28">
+                            <path d="M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 017 7h1a1 1 0 011 1"/>
+                            <path d="M7 14a7 7 0 017-7h0"/>
+                            <circle cx="12" cy="17" r="4"/>
+                            <path d="M12 13v4M10 17h4"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-card__title">AI Nutrition Coach</h3>
+                    <p class="feature-card__desc">Get personalized meal suggestions, macro tracking, and real-time nutritional advice powered by advanced AI.</p>
+                    <div class="feature-card__glow"></div>
+                </div>
+                <!-- Feature 3 -->
+                <div class="feature-card animate-in" id="feature-steps">
+                    <div class="feature-card__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="28" height="28">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-card__title">Step Counter</h3>
+                    <p class="feature-card__desc">Track daily steps with beautiful ring visualizations, weekly history, distance calculations, and calorie estimates.</p>
+                    <div class="feature-card__glow"></div>
+                </div>
+                <!-- Feature 4 -->
+                <div class="feature-card animate-in" id="feature-planner">
+                    <div class="feature-card__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="28" height="28">
+                            <rect x="3" y="4" width="18" height="18" rx="2"/>
+                            <path d="M16 2v4M8 2v4M3 10h18"/>
+                            <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-card__title">Workout Planner</h3>
+                    <p class="feature-card__desc">Build custom routines, schedule your training splits, and follow structured programs that adapt to your progress.</p>
+                    <div class="feature-card__glow"></div>
+                </div>
+                <!-- Feature 5 -->
+                <div class="feature-card animate-in" id="feature-sleep">
+                    <div class="feature-card__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="28" height="28">
+                            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-card__title">Sleep Analysis</h3>
+                    <p class="feature-card__desc">Monitor your rest patterns with Health Connect integration. Track sleep stages, duration, and quality trends over time.</p>
+                    <div class="feature-card__glow"></div>
+                </div>
+                <!-- Feature 6 -->
+                <div class="feature-card animate-in" id="feature-wearable">
+                    <div class="feature-card__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="28" height="28">
+                            <rect x="6" y="2" width="12" height="20" rx="3"/>
+                            <path d="M12 17h.01"/>
+                            <path d="M9 2v1M15 2v1M9 22v-1M15 22v-1"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-card__title">Wearable Sync</h3>
+                    <p class="feature-card__desc">Seamlessly connect your Fitbit, health devices, and Health Connect. Sync steps, heart rate, calories, and more.</p>
+                    <div class="feature-card__glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ AI SHOWCASE SECTION ═══════════════════ -->
+    <section class="ai-section" id="ai">
+        <div class="ai-section__container">
+            <div class="ai-section__content animate-in">
+                <span class="section-tag">AI ASSISTANT</span>
+                <h2 class="section-title">Your Personal<br><span class="text-accent">AI Fitness Coach</span></h2>
+                <p class="section-subtitle" style="text-align: left;">AbWork's built-in AI analyzes your daily intake, workout history, and goals to provide real-time coaching — from meal suggestions to recovery advice.</p>
+                <ul class="ai-section__list">
+                    <li class="ai-section__list-item animate-in">
+                        <div class="ai-section__list-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                        </div>
+                        <div>
+                            <strong>Smart Meal Suggestions</strong>
+                            <p>Get snack and post-workout recommendations based on your remaining macros</p>
+                        </div>
+                    </li>
+                    <li class="ai-section__list-item animate-in">
+                        <div class="ai-section__list-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                        </div>
+                        <div>
+                            <strong>Real-Time Chat</strong>
+                            <p>Ask anything about nutrition, form, or programming — get instant expert answers</p>
+                        </div>
+                    </li>
+                    <li class="ai-section__list-item animate-in">
+                        <div class="ai-section__list-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                        </div>
+                        <div>
+                            <strong>TDEE Calculator</strong>
+                            <p>Accurately calculate your daily energy expenditure with science-backed formulas</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="ai-section__visual animate-in">
+                <div class="ai-card">
+                    <div class="ai-card__header">
+                        <div class="ai-card__avatar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                                <path d="M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 017 7h1a1 1 0 011 1M7 14a7 7 0 017-7"/>
+                                <circle cx="12" cy="17" r="4"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="ai-card__name">AbWork AI</span>
+                            <span class="ai-card__status">● Active</span>
+                        </div>
+                    </div>
+                    <div class="ai-card__body">
+                        <div class="ai-card__message">
+                            Based on your intake today, you're <strong>34g short on protein</strong>. Try adding a Greek yogurt bowl with almonds for a quick 22g boost! 🥜
+                        </div>
+                        <div class="ai-card__suggestions">
+                            <div class="ai-card__suggestion">
+                                <span class="ai-card__suggestion-label">SNACK</span>
+                                <span class="ai-card__suggestion-name">Greek Yogurt & Nuts</span>
+                                <span class="ai-card__suggestion-meta">180 kcal • 15g Protein</span>
+                            </div>
+                            <div class="ai-card__suggestion">
+                                <span class="ai-card__suggestion-label">POST-GYM</span>
+                                <span class="ai-card__suggestion-name">Protein Shake</span>
+                                <span class="ai-card__suggestion-meta">220 kcal • 24g Protein</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ai-section__glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ SCREENSHOTS SECTION ═══════════════════ -->
+    <section class="screenshots" id="screenshots">
+        <div class="screenshots__container">
+            <div class="section-header animate-in">
+                <span class="section-tag">PREVIEW</span>
+                <h2 class="section-title">See It In<br><span class="text-accent">Action</span></h2>
+                <p class="section-subtitle">Beautiful, intuitive, and packed with features. Take a look at what awaits inside.</p>
+            </div>
+            <div class="screenshots__gallery animate-in">
+                <div class="screenshot-phone" id="screenshot1">
+                    <div class="screenshot-phone__frame">
+                        <div class="screenshot-phone__notch"></div>
+                        <div class="screenshot-phone__screen">
+                            <div class="phone-placeholder phone-placeholder--sm">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><rect x="2" y="3" width="20" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                                <span>Dashboard</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="screenshot-phone__label">Dashboard</span>
+                </div>
+                <div class="screenshot-phone screenshot-phone--center" id="screenshot2">
+                    <div class="screenshot-phone__frame">
+                        <div class="screenshot-phone__notch"></div>
+                        <div class="screenshot-phone__screen">
+                            <div class="phone-placeholder phone-placeholder--sm">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><rect x="2" y="3" width="20" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                                <span>Workouts</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="screenshot-phone__label">Active Workout</span>
+                </div>
+                <div class="screenshot-phone" id="screenshot3">
+                    <div class="screenshot-phone__frame">
+                        <div class="screenshot-phone__notch"></div>
+                        <div class="screenshot-phone__screen">
+                            <div class="phone-placeholder phone-placeholder--sm">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><rect x="2" y="3" width="20" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                                <span>AI Coach</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="screenshot-phone__label">AI Coach</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ STATS BANNER ═══════════════════ -->
+    <section class="stats-banner">
+        <div class="stats-banner__inner">
+            <div class="stats-banner__item animate-in">
+                <div class="stats-banner__value-row"><span class="stats-banner__value" data-count="800">0</span><span class="stats-banner__plus">+</span></div>
+                <span class="stats-banner__label">Exercises</span>
+            </div>
+            <div class="stats-banner__item animate-in">
+                <div class="stats-banner__value-row"><span class="stats-banner__value" data-count="15">0</span><span class="stats-banner__plus">+</span></div>
+                <span class="stats-banner__label">Unique Features</span>
+            </div>
+            <div class="stats-banner__item animate-in">
+                <div class="stats-banner__value-row"><span class="stats-banner__value" data-count="6">0</span></div>
+                <span class="stats-banner__label">Wearable Integrations</span>
+            </div>
+            <div class="stats-banner__item animate-in">
+                <div class="stats-banner__value-row"><span class="stats-banner__value" data-count="100">0</span><span class="stats-banner__plus">%</span></div>
+                <span class="stats-banner__label">Free to Use</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ DOWNLOAD CTA ═══════════════════ -->
+    <section class="download" id="download">
+        <div class="download__container">
+            <div class="download__glow"></div>
+            <div class="download__content animate-in">
+                <h2 class="download__title">Ready to Transform<br>Your Fitness Journey?</h2>
+                <p class="download__subtitle">Join thousands who are already training smarter with AbWork. Available on Android — completely free.</p>
+                <div class="download__buttons">
+                    <a href="#" class="download__badge" aria-label="Get it on Google Play">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+                            <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302-2.302 2.302-2.698-2.698 2.698-2.698v.792zM5.864 2.658L16.8 9.39l-2.302 2.302L5.864 2.658z"/>
+                        </svg>
+                        <div>
+                            <span class="download__badge-small">GET IT ON</span>
+                            <span class="download__badge-large">Google Play</span>
+                        </div>
+                    </a>
+                    <a href="#" class="download__badge" aria-label="Download on the App Store">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                        </svg>
+                        <div>
+                            <span class="download__badge-small">DOWNLOAD ON THE</span>
+                            <span class="download__badge-large">App Store</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <div class="footer__brand">
+                <div class="footer__logo">
+                    <div class="nav__logo-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                    </div>
+                    <span class="nav__logo-text">AbWork</span>
+                </div>
+                <p class="footer__tagline">Train Smarter. Track Everything.</p>
+            </div>
+            <div class="footer__links">
+                <div class="footer__col">
+                    <h4 class="footer__col-title">Product</h4>
+                    <a href="#features" class="footer__link">Features</a>
+                    <a href="#ai" class="footer__link">AI Coach</a>
+                    <a href="#screenshots" class="footer__link">Preview</a>
+                    <a href="#download" class="footer__link">Download</a>
+                </div>
+                <div class="footer__col">
+                    <h4 class="footer__col-title">Support</h4>
+                    <a href="#" class="footer__link">Help Center</a>
+                    <a href="privacy.html" class="footer__link">Privacy Policy</a>
+                    <a href="#" class="footer__link">Terms of Service</a>
+                    <a href="#" class="footer__link">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p>&copy; 2026 AbWork. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
