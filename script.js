@@ -165,4 +165,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
         typeObserver.observe(aiMessage);
     }
+
+    // ── Interactive App Logic ───────────────────────────────
+    const appUI = document.querySelector('.app-ui--screenshots');
+    if (appUI) {
+        const navBtns = appUI.querySelectorAll('.app-nav__btn');
+        const screens = appUI.querySelectorAll('.app-screen');
+        const screenOrder = ['dashboard', 'diary', 'advice', 'workout', 'profile'];
+        const autoRotateMs = 3200;
+        const manualPauseMs = 7000;
+        let activeIndex = 0;
+        let rotateTimer = null;
+        let resumeTimer = null;
+
+        const setActiveScreen = (screenName) => {
+            const targetScreenId = `screen-${screenName}`;
+            const nextIndex = screenOrder.indexOf(screenName);
+
+            if (nextIndex >= 0) {
+                activeIndex = nextIndex;
+            }
+
+            navBtns.forEach(btn => {
+                const isActive = btn.dataset.screen === screenName;
+                btn.classList.toggle('app-nav__btn--active', isActive);
+                btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+
+            screens.forEach(screen => {
+                screen.classList.toggle('app-screen--active', screen.id === targetScreenId);
+            });
+        };
+
+        const startAutoRotate = () => {
+            clearInterval(rotateTimer);
+            rotateTimer = window.setInterval(() => {
+                activeIndex = (activeIndex + 1) % screenOrder.length;
+                setActiveScreen(screenOrder[activeIndex]);
+            }, autoRotateMs);
+        };
+
+        const pauseAndResumeAutoRotate = () => {
+            clearInterval(rotateTimer);
+            clearTimeout(resumeTimer);
+            resumeTimer = window.setTimeout(() => {
+                startAutoRotate();
+            }, manualPauseMs);
+        };
+
+        navBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                setActiveScreen(btn.dataset.screen);
+                pauseAndResumeAutoRotate();
+            });
+        });
+
+        setActiveScreen(screenOrder[0]);
+        startAutoRotate();
+    }
 });

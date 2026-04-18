@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "AbWork Preview",
+    "slug": "fitai-expo-preview",
+    "scheme": "abwork-preview",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#102216"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font",
+      "expo-asset"
+    ],
+    "extra": {
+      "preview": true
+    }
+  }
+}
