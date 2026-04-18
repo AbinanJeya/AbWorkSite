@@ -16,19 +16,19 @@ const htmlSource = fs.readFileSync(path.join(repoRoot, 'react-site', 'index.html
 
 assert.match(
   navSource,
-  /\/branding\/app-icon\.png/,
+  /BASE_URL}branding\/app-icon\.png/,
   'Nav bar should use the real app icon asset.'
 );
 
 assert.match(
   footerSource,
-  /\/branding\/app-icon\.png/,
+  /BASE_URL}branding\/app-icon\.png/,
   'Footer should use the real app icon asset.'
 );
 
 assert.match(
   htmlSource,
-  /\/branding\/favicon\.png/,
+  /%BASE_URL%branding\/favicon\.png/,
   'The site head should use the copied app favicon.'
 );
 

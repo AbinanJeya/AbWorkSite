@@ -1,10 +1,12 @@
 export default function NavBar({ navOpen, navScrolled, onClose, onToggle }) {
+  const appIconSrc = `${import.meta.env.BASE_URL}branding/app-icon.png`;
+
   return (
     <nav className={`launch-nav${navScrolled ? ' launch-nav--scrolled' : ''}`} id="nav">
       <div className="launch-nav__inner">
         <a href="#hero" className="launch-nav__brand" onClick={onClose}>
           <div className="launch-nav__brand-mark">
-            <img src="/branding/app-icon.png" alt="AbWork app icon" />
+            <img src={appIconSrc} alt="AbWork app icon" />
           </div>
           <div>
             <span className="launch-nav__brand-name">AbWork</span>

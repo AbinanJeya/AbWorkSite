@@ -7,9 +7,10 @@ export default function FitAiPreview() {
   const [loadError, setLoadError] = useState(false);
   const [scale, setScale] = useState(1);
   const hostRef = useRef(null);
+  const baseUrl = import.meta.env.BASE_URL;
   const previewSrc = useMemo(
-    () => (import.meta.env.DEV ? 'http://127.0.0.1:8081/' : '/fitai-preview/index.html'),
-    []
+    () => (import.meta.env.DEV ? 'http://127.0.0.1:8081/' : `${baseUrl}fitai-preview/index.html`),
+    [baseUrl]
   );
   const scaledWidth = PREVIEW_VIEWPORT_WIDTH * scale;
   const scaledHeight = PREVIEW_VIEWPORT_HEIGHT * scale;
