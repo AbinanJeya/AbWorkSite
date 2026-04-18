@@ -10,7 +10,7 @@
     "preview:sync": "powershell -ExecutionPolicy Bypass -File .\\scripts\\sync-fitai-preview.ps1",
     "preview:serve": "node .\\scripts\\serve-fitai-preview.mjs",
     "preview:dev": "npm run preview:export && npm run preview:serve",
-    "preview:export": "powershell -ExecutionPolicy Bypass -Command \"Set-Location 'C:\\AbWork\\AbWork-Website\\fitai-expo-preview'; npx expo export --platform web --output-dir ../react-site/public/fitai-preview\""
+    "preview:export": "powershell -ExecutionPolicy Bypass -Command \"Set-Location 'C:\\AbWork\\AbWork-Website\\fitai-expo-preview'; npx expo export --platform web --output-dir ../react-site/public/fitai-preview\" && node .\\scripts\\finalize-fitai-preview-export.mjs"
   },
   "dependencies": {
     "react": "^19.2.5",
