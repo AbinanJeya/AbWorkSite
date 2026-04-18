@@ -1,8 +1,35 @@
-function ProofCard({ title, body }) {
+const stackItems = [
+  { title: 'Workouts', detail: 'Plans + live logging' },
+  { title: 'Nutrition', detail: 'Macros + meals' },
+  { title: 'Steps', detail: 'Daily movement' },
+  { title: 'Recovery', detail: 'Hydration + trends' },
+];
+
+const checklistItems = [
+  {
+    title: 'One place to train',
+    detail: 'Routines, sessions, and exercise history stay in one flow.',
+  },
+  {
+    title: 'One place to eat',
+    detail: 'Diary, macros, and AI guidance stop living in separate tools.',
+  },
+  {
+    title: 'One place to stay consistent',
+    detail: 'Steps, recovery cues, and progress stay visible every day.',
+  },
+];
+
+function ChecklistItem({ title, detail }) {
   return (
-    <div className="proof-strip__card animate-in">
-      <h3>{title}</h3>
-      <p>{body}</p>
+    <div className="proof-strip__check-item animate-in">
+      <span className="proof-strip__check-icon" aria-hidden="true">
+        ✓
+      </span>
+      <div>
+        <strong>{title}</strong>
+        <span>{detail}</span>
+      </div>
     </div>
   );
 }
@@ -26,30 +53,47 @@ export default function ProofStripSection() {
             It replaces the scattered stack that usually makes fitness harder to sustain.
           </h2>
           <p className="section-subtitle">
-            Most people juggle separate tools for workouts, food, steps, recovery, and progress.
-            AbWork turns that into one rhythm so the whole system finally works together.
+            Most people bounce between separate tools for workouts, food, steps, and progress.
+            AbWork collapses that into one rhythm you can actually stay with.
           </p>
         </div>
 
-        <div className="proof-strip__grid">
-          <ProofCard
-            title="Training and nutrition stop living in different apps"
-            body="The workout side and the food side inform each other, so your daily choices feel connected instead of fragmented."
-          />
-          <ProofCard
-            title="Your progress stays visible every day"
-            body="Step rings, diary history, routines, and AI prompts keep momentum in front of you without asking for more effort."
-          />
-          <ProofCard
-            title="The app feels like a premium product, not a tracker spreadsheet"
-            body="Dark polished surfaces, focused flows, and app-first design make the whole experience feel desirable to return to."
-          />
+        <div className="proof-strip__experience">
+          <div className="proof-strip__stage animate-in">
+            <div className="proof-strip__stage-glow" aria-hidden="true" />
+            <div className="proof-strip__stack" aria-label="Scattered fitness tools">
+              {stackItems.map((item, index) => (
+                <div
+                  key={item.title}
+                  className="proof-strip__stack-item"
+                  style={{ '--proof-index': index }}
+                >
+                  <strong>{item.title}</strong>
+                  <span>{item.detail}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="proof-strip__beam" aria-hidden="true" />
+
+            <div className="proof-strip__core">
+              <span className="proof-strip__core-tag">ABWORK</span>
+              <strong>Everything moves together</strong>
+              <p>Planning, meals, movement, and recovery reinforce each other without tool switching.</p>
+            </div>
+          </div>
+
+          <div className="proof-strip__checklist">
+            {checklistItems.map((item) => (
+              <ChecklistItem key={item.title} title={item.title} detail={item.detail} />
+            ))}
+          </div>
         </div>
 
         <div className="proof-strip__metrics">
           <Metric value={800} label="Exercises ready to log" />
           <Metric value={6} label="Wearable and health integrations" />
-          <Metric value={15} label="Core capabilities in one system" />
+          <Metric value={15} label="Core capabilities working together" />
           <Metric value={100} label="Free consumer access" />
         </div>
       </div>

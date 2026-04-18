@@ -4807,6 +4807,14 @@ img {
     background: linear-gradient(180deg, rgba(37, 244, 106, 0.22), rgba(37, 244, 106, 0.08));
     border: 1px solid rgba(37, 244, 106, 0.22);
     box-shadow: 0 10px 30px rgba(37, 244, 106, 0.14);
+    overflow: hidden;
+}
+
+.launch-nav__brand-mark img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
 }
 
 .launch-nav__brand-name {
@@ -5121,14 +5129,14 @@ img {
     margin-left: 0;
 }
 
-.proof-strip__grid {
+.proof-strip__experience {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
+    grid-template-columns: minmax(320px, 1.2fr) minmax(280px, 0.9fr);
+    gap: 24px;
     margin-bottom: 28px;
 }
 
-.proof-strip__card,
+.proof-strip__stage,
 .signature-card,
 .showcase-point,
 .stick-card,
@@ -5140,23 +5148,178 @@ img {
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
 }
 
-.proof-strip__card h3,
+.proof-strip__stage {
+    position: relative;
+    overflow: hidden;
+    min-height: 320px;
+    display: grid;
+    align-items: center;
+}
+
+.proof-strip__stage-glow {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(37, 244, 106, 0.22), rgba(37, 244, 106, 0));
+    transform: translate(-50%, -50%);
+    filter: blur(12px);
+    pointer-events: none;
+}
+
+.proof-strip__stack {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 14px;
+    max-width: 240px;
+}
+
+.proof-strip__stack-item {
+    position: relative;
+    display: grid;
+    gap: 4px;
+    padding: 16px 18px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.18);
+    animation: proofFloat 5.8s ease-in-out infinite;
+    animation-delay: calc(var(--proof-index, 0) * -0.9s);
+}
+
+.proof-strip__stack-item strong,
+.proof-strip__check-item strong,
 .signature-card h3,
 .showcase-point h3,
 .stick-card h3,
 .trust-card h3 {
     font-size: 1.2rem;
     line-height: 1.2;
-    margin-bottom: 12px;
 }
 
-.proof-strip__card p,
+.proof-strip__stack-item span {
+    color: rgba(241, 245, 249, 0.64);
+    font-size: 0.88rem;
+    line-height: 1.45;
+}
+
+.proof-strip__beam {
+    position: absolute;
+    inset: 50% 120px auto 220px;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(37, 244, 106, 0.12), rgba(37, 244, 106, 0.9), rgba(37, 244, 106, 0.12));
+    transform: translateY(-50%);
+    box-shadow: 0 0 20px rgba(37, 244, 106, 0.45);
+}
+
+.proof-strip__beam::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 12%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    transform: translateY(-50%);
+    box-shadow: 0 0 16px rgba(37, 244, 106, 0.75);
+    animation: proofPulse 2.6s ease-in-out infinite;
+}
+
+.proof-strip__core {
+    position: absolute;
+    right: 32px;
+    top: 50%;
+    z-index: 1;
+    width: min(100%, 280px);
+    padding: 26px;
+    border-radius: 26px;
+    background: linear-gradient(180deg, rgba(37, 244, 106, 0.15), rgba(255, 255, 255, 0.04));
+    border: 1px solid rgba(37, 244, 106, 0.22);
+    box-shadow: 0 24px 52px rgba(0, 0, 0, 0.26);
+    transform: translateY(-50%);
+}
+
+.proof-strip__core-tag {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(7, 13, 9, 0.72);
+    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.proof-strip__core strong {
+    display: block;
+    margin-bottom: 10px;
+    font-size: clamp(1.4rem, 2.1vw, 1.9rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+}
+
+.proof-strip__core p {
+    color: rgba(241, 245, 249, 0.76);
+    line-height: 1.65;
+}
+
+.proof-strip__checklist {
+    display: grid;
+    gap: 14px;
+}
+
+.proof-strip__check-item {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 14px;
+    align-items: start;
+    padding: 22px 24px;
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+}
+
+.proof-strip__check-item div {
+    display: grid;
+    gap: 6px;
+}
+
+.proof-strip__check-item strong,
+.signature-card h3,
+.showcase-point h3,
+.stick-card h3,
+.trust-card h3 {
+    margin-bottom: 0;
+}
+
+.proof-strip__check-item span,
 .signature-card p,
 .showcase-point p,
 .stick-card p,
 .trust-card p {
     color: rgba(241, 245, 249, 0.7);
-    line-height: 1.75;
+    line-height: 1.7;
+}
+
+.proof-strip__check-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: rgba(37, 244, 106, 0.15);
+    border: 1px solid rgba(37, 244, 106, 0.28);
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 800;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.16) inset;
 }
 
 .proof-strip__metrics {
@@ -5166,8 +5329,8 @@ img {
 }
 
 .proof-strip__metric {
-    padding: 24px;
-    border-radius: 24px;
+    padding: 22px;
+    border-radius: 22px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(37, 244, 106, 0.12);
     text-align: left;
@@ -5187,6 +5350,28 @@ img {
     font-size: 0.92rem;
 }
 
+@keyframes proofFloat {
+    0%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform: translate3d(0, -8px, 0);
+    }
+}
+
+@keyframes proofPulse {
+    0%, 100% {
+        opacity: 0.65;
+        transform: translateY(-50%) scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-50%) scale(1.15);
+    }
+}
+
 .signature-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -5202,6 +5387,89 @@ img {
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
+}
+
+.signature-card__topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+
+.signature-card__meter {
+    display: inline-flex;
+    gap: 6px;
+}
+
+.signature-card__meter span {
+    width: 24px;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(37, 244, 106, 0.22);
+}
+
+.signature-card__meter span:nth-child(2) {
+    background: rgba(37, 244, 106, 0.45);
+}
+
+.signature-card__meter span:nth-child(3) {
+    background: rgba(37, 244, 106, 0.82);
+}
+
+.signature-card__list,
+.trust-card__list {
+    display: grid;
+    gap: 12px;
+    padding: 0;
+    margin: 18px 0 0;
+    list-style: none;
+}
+
+.signature-card__list li,
+.trust-card__list li {
+    display: grid;
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(248, 250, 252, 0.88);
+    font-size: 0.98rem;
+    line-height: 1.45;
+    font-weight: 600;
+}
+
+.signature-card__list li:first-child,
+.trust-card__list li:first-child {
+    padding-top: 0;
+    border-top: 0;
+}
+
+.signature-card__check,
+.trust-card__dot {
+    display: inline-grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 999px;
+    margin-top: 1px;
+    color: var(--accent);
+}
+
+.signature-card__check {
+    background: rgba(37, 244, 106, 0.15);
+    border: 1px solid rgba(37, 244, 106, 0.26);
+    font-size: 0.84rem;
+    font-weight: 800;
+}
+
+.trust-card__dot {
+    width: 10px;
+    height: 10px;
+    margin: 8px 0 0 8px;
+    background: var(--accent);
+    box-shadow: 0 0 14px rgba(37, 244, 106, 0.45);
 }
 
 .signature-card--workout {
@@ -5309,11 +5577,53 @@ img {
     margin-bottom: 14px;
 }
 
-.showcase-story__copy p {
+.showcase-story__summary {
     max-width: 42ch;
     color: rgba(241, 245, 249, 0.72);
     font-size: 1rem;
-    line-height: 1.8;
+    line-height: 1.75;
+    margin-bottom: 18px;
+}
+
+.showcase-story__list {
+    display: grid;
+    gap: 12px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    max-width: 42ch;
+}
+
+.showcase-story__list li {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+    padding: 12px 0;
+    color: rgba(248, 250, 252, 0.92);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.45;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.showcase-story__list li:first-child {
+    border-top: 0;
+    padding-top: 0;
+}
+
+.showcase-story__check {
+    display: inline-grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: rgba(40, 255, 119, 0.16);
+    border: 1px solid rgba(40, 255, 119, 0.28);
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 800;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.16) inset;
 }
 
 .stick-grid,
@@ -5479,7 +5789,7 @@ img {
         justify-self: center;
     }
 
-    .proof-strip__grid,
+    .proof-strip__experience,
     .proof-strip__metrics,
     .stick-grid,
     .trust-grid {
@@ -5523,7 +5833,7 @@ img {
     }
 
     .launch-hero__proof,
-    .proof-strip__grid,
+    .proof-strip__experience,
     .proof-strip__metrics,
     .signature-grid,
     .stick-grid,
@@ -5537,6 +5847,29 @@ img {
     .launch-footer__inner,
     .launch-footer__links {
         justify-content: flex-start;
+    }
+
+    .proof-strip__experience {
+        grid-template-columns: 1fr;
+    }
+
+    .proof-strip__stage {
+        min-height: 420px;
+    }
+
+    .proof-strip__beam {
+        inset: auto auto 128px 28px;
+        width: calc(100% - 56px);
+        transform: none;
+    }
+
+    .proof-strip__core {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin-top: 22px;
+        width: 100%;
+        transform: none;
     }
 
     .showcase-story,
@@ -5588,13 +5921,27 @@ img {
         padding: 74px 0;
     }
 
-    .proof-strip__card,
+    .proof-strip__stage,
     .signature-card,
     .stick-card,
     .trust-card,
     .premium-download__panel {
         padding: 22px;
         border-radius: 24px;
+    }
+
+    .signature-card__topline {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .proof-strip__check-item {
+        padding: 18px 20px;
+    }
+
+    .proof-strip__stack {
+        max-width: none;
     }
 
     .showcase-story {

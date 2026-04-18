@@ -21,6 +21,12 @@ assert.match(
 
 assert.match(
   source,
+  /showcase-story__list/,
+  'ShowcaseSection should render checklist-style supporting points for fast scanning.'
+);
+
+assert.match(
+  source,
   /Dashboard that drives action/,
   'ShowcaseSection should keep screen-specific supporting copy.'
 );
@@ -29,6 +35,12 @@ assert.match(
   source,
   /AI nutrition that feels useful in the moment/,
   'ShowcaseSection should pair the AI screen with descriptive product copy.'
+);
+
+assert.match(
+  source,
+  /Live habit signals/,
+  'ShowcaseSection should include concise checklist bullets instead of paragraph-only explanations.'
 );
 
 console.log('showcase-pairing.test.mjs passed');

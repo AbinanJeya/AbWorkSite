@@ -13,12 +13,11 @@ export default function HeroSection({ onPrimaryClick, onSecondaryClick }) {
             Android APK access available now
           </div>
           <h1 className="launch-hero__title animate-in visible">
-            The fitness app that keeps your whole routine in one locked-in system.
+            The fitness app that keeps training, food, and progress in sync.
           </h1>
           <p className="launch-hero__subtitle animate-in visible">
-            AbWork brings training, nutrition coaching, step tracking, recovery cues, and wearable
-            sync into one premium mobile experience so progress feels clear, immediate, and easy to
-            keep.
+            AbWork keeps workouts, nutrition, steps, recovery, and wearable data aligned so the
+            next useful action stays obvious.
           </p>
 
           <div className="launch-hero__actions animate-in visible">
@@ -41,11 +40,11 @@ export default function HeroSection({ onPrimaryClick, onSecondaryClick }) {
             </div>
             <div className="launch-proof-chip">
               <strong>AI</strong>
-              <span>Nutrition guidance built into your daily flow</span>
+              <span>Nutrition help built into the daily loop</span>
             </div>
             <div className="launch-proof-chip">
               <strong>1 app</strong>
-              <span>Workouts, habits, recovery, and tracking together</span>
+              <span>Training, food, recovery, and momentum together</span>
             </div>
           </div>
         </div>
@@ -58,12 +57,12 @@ export default function HeroSection({ onPrimaryClick, onSecondaryClick }) {
             </div>
             <div className="launch-floating launch-floating--right">
               <span>Wearables</span>
-              <strong>Synced in one flow</strong>
+              <strong>Synced automatically</strong>
             </div>
             <FitAiPreview />
           </div>
           <p className="launch-hero__device-note">
-            Live app preview using the real FitAI-inspired front end inside the landing page.
+            Live app preview embedded directly into the landing page.
           </p>
         </div>
       </div>

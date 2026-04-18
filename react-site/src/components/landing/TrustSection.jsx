@@ -1,9 +1,16 @@
-function TrustCard({ title, body, meta }) {
+function TrustCard({ title, meta, points }) {
   return (
     <article className="trust-card animate-in">
       <span className="trust-card__meta">{meta}</span>
       <h3>{title}</h3>
-      <p>{body}</p>
+      <ul className="trust-card__list">
+        {points.map((point) => (
+          <li key={point}>
+            <span className="trust-card__dot" aria-hidden="true" />
+            <span>{point}</span>
+          </li>
+        ))}
+      </ul>
     </article>
   );
 }
@@ -19,26 +26,38 @@ export default function TrustSection() {
             pretending.
           </h2>
           <p className="section-subtitle">
-            This site should earn trust by showing real capability: live app preview, integrated
-            systems, and a mobile experience that already feels premium.
+            Trust should come from seeing the product move: live preview, connected data, and a
+            mobile flow that already feels finished.
           </p>
         </div>
 
         <div className="trust-grid">
           <TrustCard
             meta="REAL APP PREVIEW"
-            title="The hero uses a live app preview instead of a fake phone mockup"
-            body="That turns the site itself into proof that AbWork is a real product with a real interface, not just a concept with polished marketing."
+            title="The hero proves the product is real"
+            points={[
+              'Real UI, not a concept render',
+              'Live navigation instead of a fake mockup',
+              'A product people can immediately inspect',
+            ]}
           />
           <TrustCard
             meta="CONNECTED SYSTEM"
-            title="Training, nutrition, steps, recovery, and sync all reinforce each other"
-            body="This is the strongest product argument on the page: AbWork is valuable because the system feels unified where most users are juggling separate tools."
+            title="The value comes from everything reinforcing each other"
+            points={[
+              'Training and nutrition stay connected',
+              'Steps, recovery, and sync stay in the same loop',
+              'The whole system feels unified instead of scattered',
+            ]}
           />
           <TrustCard
             meta="CONSUMER READY"
-            title="The site should feel premium enough to match the ambition of the app"
-            body="Stronger hierarchy, sharper messaging, and cleaner conversion flow position AbWork like a product people aspire to use."
+            title="The product already feels ready to use"
+            points={[
+              'Consistent mobile polish from the first screen',
+              'An install path that is visible right away',
+              'An experience that feels deliberate, not improvised',
+            ]}
           />
         </div>
 

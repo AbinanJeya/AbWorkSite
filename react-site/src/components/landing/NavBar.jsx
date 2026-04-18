@@ -4,22 +4,11 @@ export default function NavBar({ navOpen, navScrolled, onClose, onToggle }) {
       <div className="launch-nav__inner">
         <a href="#hero" className="launch-nav__brand" onClick={onClose}>
           <div className="launch-nav__brand-mark">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              width="18"
-              height="18"
-            >
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-            </svg>
+            <img src="/branding/app-icon.png" alt="AbWork app icon" />
           </div>
           <div>
             <span className="launch-nav__brand-name">AbWork</span>
-            <span className="launch-nav__brand-meta">Premium fitness companion</span>
+            <span className="launch-nav__brand-meta">Fitness that stays in sync</span>
           </div>
         </a>
 

@@ -22,16 +22,16 @@ export default function WhyItSticksSection() {
 
         <div className="stick-grid">
           <StickCard
-            title="Less friction means more follow-through"
-            body="When training, food, steps, and recovery live in one place, staying on plan stops feeling like admin work."
+            title="Quicker check-ins lower the odds of falling off"
+            body="Fast logging and clear next steps make staying on plan feel lighter week after week."
           />
           <StickCard
-            title="Visual momentum keeps motivation alive"
-            body="Rings, summaries, routines, and progress blocks make your effort visible in a way that encourages another day of showing up."
+            title="Visible momentum makes effort easier to repeat"
+            body="Rings, summaries, and session history turn progress into something you can notice fast."
           />
           <StickCard
-            title="The app feels worth opening"
-            body="The aesthetic polish and app-native rhythm are part of the product value, not decoration added on top."
+            title="A calm interface reduces resistance"
+            body="When the app feels clean and predictable, opening it again takes less mental effort."
           />
         </div>
       </div>

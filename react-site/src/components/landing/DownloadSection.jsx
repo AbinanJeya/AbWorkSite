@@ -8,9 +8,8 @@ export default function DownloadSection() {
             Start with the Android build now, then catch the store launch when it lands.
           </h2>
           <p className="section-subtitle premium-download__subtitle">
-            The primary path is APK-first for now. Store versions stay visible as part of the
-            product roadmap, but the site should steer people toward the current Android entry
-            point.
+            Android is the live entry point today. Store launches come next, but the product is
+            ready to explore now.
           </p>
         </div>
 

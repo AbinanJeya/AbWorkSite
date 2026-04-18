@@ -2,7 +2,16 @@ import advicePreview from '../../../../assets/Screenshot_20260417_034729.png';
 import dashboardPreview from '../../../../assets/DashBoard.png';
 import workoutPreview from '../../../../assets/LiveWorkout.png';
 
-function ShowcaseStory({ eyebrow, title, body, image, alt, label, reverse = false }) {
+function ShowcaseStory({
+  eyebrow,
+  title,
+  summary,
+  bullets,
+  image,
+  alt,
+  label,
+  reverse = false,
+}) {
   return (
     <article className={`showcase-story animate-in${reverse ? ' showcase-story--reverse' : ''}`}>
       <div className="showcase-story__device">
@@ -17,7 +26,17 @@ function ShowcaseStory({ eyebrow, title, body, image, alt, label, reverse = fals
       <div className="showcase-story__copy">
         <span className="showcase-story__eyebrow">{eyebrow}</span>
         <h3>{title}</h3>
-        <p>{body}</p>
+        <p className="showcase-story__summary">{summary}</p>
+        <ul className="showcase-story__list">
+          {bullets.map((bullet) => (
+            <li key={bullet}>
+              <span className="showcase-story__check" aria-hidden="true">
+                ✓
+              </span>
+              <span>{bullet}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </article>
   );
@@ -33,9 +52,8 @@ export default function ShowcaseSection() {
             Every tab is designed to keep you moving, not just storing data.
           </h2>
           <p className="section-subtitle">
-            The product story should come from the actual interface. AbWork's screens already show
-            what makes the system stick: daily visibility, confident training flow, and AI that
-            feels useful in the moment.
+            The interface already tells the story: daily visibility, smoother training flow, and
+            AI help in the moment.
           </p>
         </div>
 
@@ -43,7 +61,12 @@ export default function ShowcaseSection() {
           <ShowcaseStory
             eyebrow="DASHBOARD"
             title="Dashboard that drives action"
-            body="The home experience surfaces steps, streaks, hydration, leaderboard energy, and recovery cues so you always know what to do next."
+            summary="The home experience tells you what matters today without making you scan through noise."
+            bullets={[
+              'Live habit signals at a glance',
+              'Streaks, hydration, and steps in one place',
+              'Leaderboard energy that keeps momentum visible',
+            ]}
             image={dashboardPreview}
             alt="AbWork dashboard"
             label="Dashboard clarity"
@@ -52,7 +75,12 @@ export default function ShowcaseSection() {
           <ShowcaseStory
             eyebrow="WORKOUT"
             title="Workout planning that feels premium"
-            body="Routine structure, active sessions, and progress-focused training design make the app feel built for actual gym use, not just casual browsing."
+            summary="The workout flow feels built for real training sessions, not casual browsing."
+            bullets={[
+              'Structured routines ready to run',
+              'Live session logging that stays readable',
+              'Progress-focused flow without clutter',
+            ]}
             image={workoutPreview}
             alt="AbWork workout"
             label="Workout flow"
@@ -62,7 +90,12 @@ export default function ShowcaseSection() {
           <ShowcaseStory
             eyebrow="AI NUTRITION"
             title="AI nutrition that feels useful in the moment"
-            body="Meal suggestions, quick-add foods, and practical guidance make the Advice tab feel like a real coaching surface instead of a novelty chatbot."
+            summary="Advice stays practical so the AI feels like a useful coaching layer, not a gimmick."
+            bullets={[
+              'Quick macro-aware suggestions',
+              'Fast answers when you need the next move',
+              'Meal guidance that feels practical',
+            ]}
             image={advicePreview}
             alt="AbWork advice"
             label="AI nutrition help"
