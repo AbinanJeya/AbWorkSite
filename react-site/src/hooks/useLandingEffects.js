@@ -27,9 +27,14 @@ export function useLandingEffects(setNavScrolled) {
     );
 
     [
-      '.features__grid .feature-card',
-      '.ai-section__list .ai-section__list-item',
-      '.stats-banner__item',
+      '.proof-strip__grid .proof-strip__card',
+      '.proof-strip__metrics .proof-strip__metric',
+      '.signature-grid .signature-card',
+      '.showcase-points .showcase-point',
+      '.showcase-section__visual .showcase-phone',
+      '.stick-grid .stick-card',
+      '.trust-grid .trust-card',
+      '.trust-pills span',
     ].forEach((selector) => {
       document.querySelectorAll(selector).forEach((element, index) => {
         element.dataset.delay = String(index * 100);
@@ -106,7 +111,7 @@ export function useLandingEffects(setNavScrolled) {
     });
     cleanups.push(() => countObserver.disconnect());
 
-    const heroGlow = document.querySelector('.hero__bg-glow');
+    const heroGlow = document.querySelector('.launch-hero__orb');
     let handleMouseMove = null;
 
     if (heroGlow && window.matchMedia('(min-width: 768px)').matches) {
