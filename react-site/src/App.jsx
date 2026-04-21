@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
+import ActionProofSection from './components/landing/ActionProofSection.jsx';
 import DownloadSection from './components/landing/DownloadSection.jsx';
 import FooterSection from './components/landing/FooterSection.jsx';
 import HeroSection from './components/landing/HeroSection.jsx';
 import NavBar from './components/landing/NavBar.jsx';
-import ProofStripSection from './components/landing/ProofStripSection.jsx';
 import ShowcaseSection from './components/landing/ShowcaseSection.jsx';
-import SignatureFeaturesSection from './components/landing/SignatureFeaturesSection.jsx';
 import TrustSection from './components/landing/TrustSection.jsx';
 import WhyItSticksSection from './components/landing/WhyItSticksSection.jsx';
 import { useLandingEffects } from './hooks/useLandingEffects.js';
@@ -41,8 +40,7 @@ export default function App() {
         onToggle={() => setNavOpen((currentValue) => !currentValue)}
       />
       <HeroSection onPrimaryClick={closeNav} onSecondaryClick={closeNav} />
-      <ProofStripSection />
-      <SignatureFeaturesSection />
+      <ActionProofSection />
       <ShowcaseSection />
       <WhyItSticksSection />
       <TrustSection />

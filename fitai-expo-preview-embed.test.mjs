@@ -47,6 +47,21 @@ function run() {
   assert.match(previewSource, /<iframe/i);
   assert.match(previewSource, /fitai-preview/i);
   assert.doesNotMatch(previewSource, /FitAiRealPreview/);
+  assert.doesNotMatch(
+    previewSource,
+    /fitai-device__camera/,
+    'The shared live phone preview should not render a camera cutout.'
+  );
+  assert.doesNotMatch(
+    previewSource,
+    /127\.0\.0\.1:8081/,
+    'The embedded preview should not rely on the generic Expo dev host for the landing site.'
+  );
+  assert.match(
+    previewSource,
+    /fitai-preview\/index\.html/,
+    'The embedded preview should point at the site-served exported preview page.'
+  );
 
   const previewPackage = JSON.parse(fs.readFileSync(path.join(previewRoot, 'package.json'), 'utf8'));
   assert.equal(typeof previewPackage.scripts?.web, 'string');

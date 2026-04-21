@@ -7,7 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Haptics from 'expo-haptics';
 import { useTheme } from '../theme';
 import { saveUserProfile, getUserProfile } from '../services/storage';
-import { getCurrentUser, saveProfileToCloud } from '../services/auth';
+import { getCurrentUser, savePreviewProfile } from '../services/auth';
 
 const QUESTIONS = [
     {
@@ -137,7 +137,7 @@ export default function NutritionQuestionnaireScreen({ navigation, route }) {
                 
                 const user = getCurrentUser();
                 if (user?.uid) {
-                    await saveProfileToCloud(user.uid, fullProfile);
+                    await savePreviewProfile(user.uid, fullProfile);
                 }
 
                 if (route.params?.fromSettings) {

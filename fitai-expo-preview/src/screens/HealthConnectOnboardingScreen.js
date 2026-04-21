@@ -5,6 +5,7 @@ import { useTheme } from '../theme';
 import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { initializeHealth, requestHealthPermissions, checkGrantedPermissions } from '../services/health';
 import { saveSettings, getSettings, getUserProfile } from '../services/storage';
+import { forceLocalBackup } from '../services/localSync';
 
 export default function HealthConnectOnboardingScreen({ navigation }) {
     const { colors, isDark } = useTheme();
@@ -34,10 +35,7 @@ export default function HealthConnectOnboardingScreen({ navigation }) {
                         await saveSettings({
                             wearableConnections: { health_connect: { connected: true, syncSteps: true, syncSleep: true, syncWorkouts: false } }
                         });
-                        try {
-                            const { forceCloudBackup } = require('../services/cloudSync');
-                            await forceCloudBackup(true);
-                        } catch (e) { }
+                        await forceLocalBackup();
                         proceedToNext();
                         return;
                     } else {
@@ -97,10 +95,7 @@ export default function HealthConnectOnboardingScreen({ navigation }) {
                 await saveSettings({
                     wearableConnections: { health_connect: { connected: true, syncSteps: true, syncSleep: true, syncWorkouts: false } }
                 });
-                try {
-                    const { forceCloudBackup } = require('../services/cloudSync');
-                    await forceCloudBackup(true);
-                } catch (e) { }
+                await forceLocalBackup();
                 proceedToNext();
             } else {
                 setLoading(false);

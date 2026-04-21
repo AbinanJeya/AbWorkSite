@@ -1,20 +1,26 @@
 import React, { useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import { BlurView } from 'expo-blur';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { useTheme, ELEVATION } from '../theme';
 import { useTranslation } from '../services/i18n';
-import { usePreviewEnvironment } from '../preview/PreviewEnvironment';
+import {
+  PREVIEW_ACTIVE_WORKOUT_SCENE,
+  usePreviewEnvironment,
+} from '../preview/PreviewEnvironment';
 import { usePreviewAutoDemo } from '../preview/PreviewAutoDemo';
 import DashboardScreen from '../screens/DashboardScreen';
 import DiaryScreen from '../screens/DiaryScreen';
 import AdviceScreen from '../screens/AdviceScreen';
 import WorkoutPlannerScreen from '../screens/WorkoutPlannerScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import PreviewActiveWorkoutScene from '../preview/PreviewActiveWorkoutScene';
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 const tabIcons = {
   Dashboard: { lib: MaterialIcons, icon: 'home', iconActive: 'home' },
@@ -94,7 +100,17 @@ function CustomTabBar({ state, navigation }) {
 
 export default function AppNavigator() {
   const { colors } = useTheme();
-  const { initialRoute } = usePreviewEnvironment();
+  const { initialRoute, previewScene } = usePreviewEnvironment();
+
+  if (previewScene === PREVIEW_ACTIVE_WORKOUT_SCENE) {
+    return (
+      <View style={{ flex: 1, backgroundColor: colors.bgDark }}>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="ActiveWorkoutPreview" component={PreviewActiveWorkoutScene} />
+        </Stack.Navigator>
+      </View>
+    );
+  }
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.bgDark }}>

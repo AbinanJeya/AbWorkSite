@@ -18,9 +18,6 @@ export default function NavBar({ navOpen, navScrolled, onClose, onToggle }) {
           <a href="#proof" className="launch-nav__link" onClick={onClose}>
             Why AbWork
           </a>
-          <a href="#features" className="launch-nav__link" onClick={onClose}>
-            Signature Features
-          </a>
           <a href="#showcase" className="launch-nav__link" onClick={onClose}>
             Experience
           </a>

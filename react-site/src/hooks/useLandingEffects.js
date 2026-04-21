@@ -27,13 +27,9 @@ export function useLandingEffects(setNavScrolled) {
     );
 
     [
-      '.proof-strip__grid .proof-strip__card',
-      '.proof-strip__metrics .proof-strip__metric',
-      '.signature-grid .signature-card',
-      '.showcase-points .showcase-point',
-      '.showcase-section__visual .showcase-phone',
+      '.action-proof__results .action-proof__result-card',
       '.stick-grid .stick-card',
-      '.trust-grid .trust-card',
+      '.trust-board .trust-board__card',
       '.trust-pills span',
     ].forEach((selector) => {
       document.querySelectorAll(selector).forEach((element, index) => {

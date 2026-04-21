@@ -4,7 +4,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { useActivityData } from '../contexts/ActivityDataContext';
 import { clearAllData } from '../services/storage';
-import { forceCloudBackup, wipeCloudData } from '../services/cloudSync';
+import { forceLocalBackup, clearPreviewData } from '../services/localSync';
 import { deleteAccount, signOut } from '../services/auth';
 import { useTranslation } from '../services/i18n';
 import { createSettingsStyles, AlertModal, ConfirmModal, SettingsScreenShell } from '../components/SettingsShared';
@@ -31,7 +31,7 @@ export default function SettingsAccountScreen() {
 
     const handleClearData = () => {
         showConfirm('Clear All Data', 'This will delete all your meals, workouts, and settings. Are you sure?', 'Yes', async () => {
-            await wipeCloudData();
+            await clearPreviewData();
             await clearAllData();
             await refreshWorkouts();
             const parent = navigation.getParent();
@@ -46,7 +46,7 @@ export default function SettingsAccountScreen() {
     const handleLogout = () => {
         showConfirm('Log Out', 'Are you sure you want to log out?', 'Log Out', async () => {
             try {
-                await forceCloudBackup(true);
+                await forceLocalBackup();
             } catch (error) {
                 console.log('Pre-logout sync failed (expected if offline):', error);
             }
@@ -55,7 +55,7 @@ export default function SettingsAccountScreen() {
                 await signOut();
                 await clearAllData();
             } catch (error) {
-                console.log('Firebase sign out error:', error);
+                console.log('Preview sign out error:', error);
             }
 
             try {
@@ -79,7 +79,7 @@ export default function SettingsAccountScreen() {
             async () => {
                 try {
                     await deleteAccount();
-                    await wipeCloudData();
+                    await clearPreviewData();
                     await clearAllData();
                     showAlert('Account Deleted', 'Your account and all associated data have been permanently removed.');
 

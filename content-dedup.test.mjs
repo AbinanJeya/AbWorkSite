@@ -12,8 +12,7 @@ function readLanding(name) {
 }
 
 const hero = readLanding('HeroSection.jsx');
-const proof = readLanding('ProofStripSection.jsx');
-const signature = readLanding('SignatureFeaturesSection.jsx');
+const proof = readLanding('ActionProofSection.jsx');
 const showcase = readLanding('ShowcaseSection.jsx');
 const sticks = readLanding('WhyItSticksSection.jsx');
 const trust = readLanding('TrustSection.jsx');
@@ -22,25 +21,19 @@ const footer = readLanding('FooterSection.jsx');
 
 assert.match(
   hero,
-  /training, food, and progress in sync/i,
+  /workouts, meals, steps, and recovery stay in sync/i,
   'Hero should own the high-level sync value proposition in a concise way.'
 );
 
 assert.match(
-  signature,
-  /core behaviors that make the app useful every day/i,
-  'Signature section should focus on everyday usefulness instead of repeating the whole-system pitch.'
-);
-
-assert.match(
   trust,
-  /Trust should come from seeing the product move/i,
+  /The product proves the pitch in seconds/i,
   'Trust section should focus on proof and credibility, not repeat the product positioning.'
 );
 
 assert.match(
   sticks,
-  /Quicker check-ins lower the odds of falling off/i,
+  /When logging feels light, staying on plan feels easier to repeat/i,
   'Why it sticks should focus on retention behavior, not re-explain the feature stack.'
 );
 
@@ -51,15 +44,21 @@ assert.match(
 );
 
 assert.doesNotMatch(
-  signature,
-  /complete system than a basic tracker/i,
-  'Signature section should not repeat the same system-level positioning from other sections.'
+  proof,
+  /One daily fitness loop/i,
+  'Action proof should not repeat the hero headline.'
 );
 
 assert.doesNotMatch(
   proof,
-  /finally feel like one system/i,
-  'Proof section should avoid repeating the exact one-system phrasing from the hero.'
+  /Everything finally moves together/i,
+  'Action proof should replace the old abstract loop message with concrete product action.'
+);
+
+assert.match(
+  proof,
+  /Watch a set land\.\s*Search the full exercise library\./i,
+  'Action proof should lead with a tight visual-first headline.'
 );
 
 assert.doesNotMatch(

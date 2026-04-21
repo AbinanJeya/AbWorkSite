@@ -1,7 +1,46 @@
-function TrustCard({ title, meta, points }) {
+const trustCards = [
+  {
+    meta: 'REAL APP',
+    metric: '5 live tabs',
+    title: 'Tap through the actual product',
+    points: [
+      'Real screens sit in the hero, not placeholder art',
+      'Navigation works instead of faking a concept',
+      'People can inspect the product immediately',
+    ],
+    footer: 'Live preview',
+  },
+  {
+    meta: 'CONNECTED LOOP',
+    metric: '1 shared system',
+    title: 'The value comes from signals reinforcing each other',
+    points: [
+      'Training and nutrition stay in one rhythm',
+      'Steps and recovery stay visible in the same loop',
+      'Progress reads like one story instead of scattered fragments',
+    ],
+    footer: 'Shared momentum',
+  },
+  {
+    meta: 'READY NOW',
+    metric: 'APK live',
+    title: 'The install path already feels concrete',
+    points: [
+      'Polish shows up from the first screen',
+      'The download action is visible right away',
+      'The experience feels deliberate, not stitched together',
+    ],
+    footer: 'Consumer ready',
+  },
+];
+
+function TrustCard({ title, meta, metric, points, footer }) {
   return (
-    <article className="trust-card animate-in">
-      <span className="trust-card__meta">{meta}</span>
+    <article className="trust-board__card trust-card animate-in">
+      <div className="trust-board__topline">
+        <span className="trust-card__meta">{meta}</span>
+        <span className="trust-board__metric">{metric}</span>
+      </div>
       <h3>{title}</h3>
       <ul className="trust-card__list">
         {points.map((point) => (
@@ -11,6 +50,10 @@ function TrustCard({ title, meta, points }) {
           </li>
         ))}
       </ul>
+      <div className="trust-board__footer">
+        <span></span>
+        <strong>{footer}</strong>
+      </div>
     </article>
   );
 }
@@ -21,44 +64,24 @@ export default function TrustSection() {
       <div className="launch-shell">
         <div className="trust-section__header animate-in">
           <span className="section-tag">PRODUCT PROOF</span>
-          <h2 className="section-title">
-            The pitch works because the product already has depth, not because the website is
-            pretending.
-          </h2>
+          <h2 className="section-title">The product proves the pitch in seconds.</h2>
           <p className="section-subtitle">
-            Trust should come from seeing the product move: live preview, connected data, and a
-            mobile flow that already feels finished.
+            Real screens, connected signals, and an install-ready flow do more than extra
+            paragraphs ever could.
           </p>
         </div>
 
-        <div className="trust-grid">
-          <TrustCard
-            meta="REAL APP PREVIEW"
-            title="The hero proves the product is real"
-            points={[
-              'Real UI, not a concept render',
-              'Live navigation instead of a fake mockup',
-              'A product people can immediately inspect',
-            ]}
-          />
-          <TrustCard
-            meta="CONNECTED SYSTEM"
-            title="The value comes from everything reinforcing each other"
-            points={[
-              'Training and nutrition stay connected',
-              'Steps, recovery, and sync stay in the same loop',
-              'The whole system feels unified instead of scattered',
-            ]}
-          />
-          <TrustCard
-            meta="CONSUMER READY"
-            title="The product already feels ready to use"
-            points={[
-              'Consistent mobile polish from the first screen',
-              'An install path that is visible right away',
-              'An experience that feels deliberate, not improvised',
-            ]}
-          />
+        <div className="trust-board">
+          {trustCards.map((card) => (
+            <TrustCard
+              key={card.meta}
+              meta={card.meta}
+              metric={card.metric}
+              title={card.title}
+              points={card.points}
+              footer={card.footer}
+            />
+          ))}
         </div>
 
         <div className="trust-pills animate-in">

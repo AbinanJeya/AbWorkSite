@@ -15,8 +15,7 @@ const landingSources = fs
 const requiredComponents = [
   'NavBar',
   'HeroSection',
-  'ProofStripSection',
-  'SignatureFeaturesSection',
+  'ActionProofSection',
   'ShowcaseSection',
   'WhyItSticksSection',
   'TrustSection',

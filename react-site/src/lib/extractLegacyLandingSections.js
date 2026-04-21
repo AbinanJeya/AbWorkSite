@@ -13,7 +13,6 @@ function extractOuterHtml(doc, selector, assetUrls) {
 export function extractLegacyLandingSections(legacyHtml, assetUrls) {
   if (typeof DOMParser === 'undefined') {
     return {
-      featuresHtml: '',
       aiHtml: '',
       screenshotsHtml: '',
       statsHtml: '',
@@ -25,7 +24,6 @@ export function extractLegacyLandingSections(legacyHtml, assetUrls) {
   const doc = new DOMParser().parseFromString(legacyHtml, 'text/html');
 
   return {
-    featuresHtml: extractOuterHtml(doc, '#features', assetUrls),
     aiHtml: extractOuterHtml(doc, '#ai', assetUrls),
     screenshotsHtml: extractOuterHtml(doc, '#screenshots', assetUrls),
     statsHtml: extractOuterHtml(doc, '.stats-banner', assetUrls),

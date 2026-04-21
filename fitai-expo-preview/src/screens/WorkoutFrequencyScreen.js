@@ -12,7 +12,7 @@ import {
     saveSettings,
     saveUserProfile,
 } from '../services/storage';
-import { getCurrentUser, saveProfileToCloud } from '../services/auth';
+import { getCurrentUser, savePreviewProfile } from '../services/auth';
 
 const TARGET_OPTIONS = [1, 2, 3, 4, 5, 6, 7];
 
@@ -55,7 +55,7 @@ export default function WorkoutFrequencyScreen({ navigation }) {
 
             const user = getCurrentUser();
             if (user?.uid) {
-                await saveProfileToCloud(user.uid, nextProfile);
+                await savePreviewProfile(user.uid, nextProfile);
             }
 
             navigation.replace('NutritionQuestionnaire');

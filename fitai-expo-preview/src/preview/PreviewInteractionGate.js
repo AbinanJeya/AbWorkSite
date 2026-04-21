@@ -1,14 +1,20 @@
 import React, { useEffect } from 'react';
 import { Platform } from 'react-native';
 import { usePreviewAutoDemo } from './PreviewAutoDemo';
+import { PREVIEW_ACTIVE_WORKOUT_SCENE, usePreviewEnvironment } from './PreviewEnvironment';
 
 const ALLOWED_TAB_SELECTOR = '[data-preview-tab="true"]';
 
 export function PreviewInteractionGate({ children }) {
   const { pauseAutomation } = usePreviewAutoDemo();
+  const { previewScene } = usePreviewEnvironment();
 
   useEffect(() => {
-    if (Platform.OS !== 'web' || typeof document === 'undefined') {
+    if (
+      Platform.OS !== 'web' ||
+      typeof document === 'undefined' ||
+      previewScene === PREVIEW_ACTIVE_WORKOUT_SCENE
+    ) {
       return undefined;
     }
 
@@ -48,7 +54,7 @@ export function PreviewInteractionGate({ children }) {
       document.removeEventListener('click', onClickCapture, true);
       document.removeEventListener('wheel', onWheelCapture, true);
     };
-  }, [pauseAutomation]);
+  }, [pauseAutomation, previewScene]);
 
   return children;
 }

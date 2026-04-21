@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import * as Network from 'expo-network';
-import { processSyncQueue } from '../services/cloudSync';
 import { onAuthChange } from '../services/auth';
+import { processLocalQueue } from '../services/localSync';
 import { getSyncQueue } from '../services/storage';
 
 export function useSyncEngine() {
@@ -16,12 +16,12 @@ export function useSyncEngine() {
                 if (isOnline && wasOffline) {
                     // Just came back online — flush the queue immediately
                     console.log('[SyncEngine] Network restored. Flushing sync queue...');
-                    await processSyncQueue();
+                    await processLocalQueue();
                 } else if (isOnline) {
                     // Already online — only sync if queue has items (avoid pointless calls)
                     const queue = await getSyncQueue();
                     if (queue.length > 0) {
-                        await processSyncQueue();
+                        await processLocalQueue();
                     }
                 }
                 

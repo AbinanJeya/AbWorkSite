@@ -1,5 +1,45 @@
 import FitAiPreview from '../FitAiPreview.jsx';
 
+const loopItems = [
+  { label: 'Train', detail: 'Plans and live logging stay ready' },
+  { label: 'Eat', detail: 'Meals and macros stay connected' },
+  { label: 'Move', detail: 'Steps and daily momentum stay visible' },
+  { label: 'Recover', detail: 'Sleep, hydration, and trends stay in view' },
+];
+
+const proofItems = [
+  { value: '800+', label: 'exercises ready to run' },
+  { value: 'AI', label: 'coaching inside the daily loop' },
+  { value: '1 app', label: 'for training, food, and recovery' },
+];
+
+const signalItems = [
+  {
+    position: 'top-left',
+    label: 'Workout split',
+    value: 'Chest + Triceps',
+    detail: 'Ready the second you open the app',
+  },
+  {
+    position: 'top-right',
+    label: 'Meals tracked',
+    value: '1,840 kcal',
+    detail: 'Macros stay live with training',
+  },
+  {
+    position: 'bottom-left',
+    label: 'Steps synced',
+    value: '8,412 today',
+    detail: 'Health data keeps the loop honest',
+  },
+  {
+    position: 'bottom-right',
+    label: 'Recovery trend',
+    value: 'Sleep improving',
+    detail: 'Small signals stay easy to notice',
+  },
+];
+
 export default function HeroSection({ onPrimaryClick, onSecondaryClick }) {
   return (
     <section className="launch-hero" id="hero">
@@ -12,13 +52,20 @@ export default function HeroSection({ onPrimaryClick, onSecondaryClick }) {
             <span className="launch-eyebrow__dot"></span>
             Android APK access available now
           </div>
-          <h1 className="launch-hero__title animate-in visible">
-            The fitness app that keeps training, food, and progress in sync.
-          </h1>
+          <h1 className="launch-hero__title animate-in visible">One daily fitness loop.</h1>
           <p className="launch-hero__subtitle animate-in visible">
-            AbWork keeps workouts, nutrition, steps, recovery, and wearable data aligned so the
-            next useful action stays obvious.
+            Workouts, meals, steps, and recovery stay in sync so every check-in points to the next
+            useful move.
           </p>
+
+          <div className="launch-loop-list animate-in visible">
+            {loopItems.map((item) => (
+              <div key={item.label} className="launch-loop-list__item">
+                <strong>{item.label}</strong>
+                <span>{item.detail}</span>
+              </div>
+            ))}
+          </div>
 
           <div className="launch-hero__actions animate-in visible">
             <a href="#download" className="launch-btn launch-btn--primary" onClick={onPrimaryClick}>
@@ -34,35 +81,38 @@ export default function HeroSection({ onPrimaryClick, onSecondaryClick }) {
           </div>
 
           <div className="launch-hero__proof animate-in visible">
-            <div className="launch-proof-chip">
-              <strong>800+</strong>
-              <span>Exercises with progress-ready logging</span>
-            </div>
-            <div className="launch-proof-chip">
-              <strong>AI</strong>
-              <span>Nutrition help built into the daily loop</span>
-            </div>
-            <div className="launch-proof-chip">
-              <strong>1 app</strong>
-              <span>Training, food, recovery, and momentum together</span>
-            </div>
+            {proofItems.map((item) => (
+              <div key={item.label} className="launch-proof-chip">
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </div>
+            ))}
           </div>
         </div>
 
         <div className="launch-hero__device-wrap animate-in visible">
           <div className="launch-hero__device-stage">
-            <div className="launch-floating launch-floating--left">
-              <span>Macros</span>
-              <strong>Tracked live</strong>
+            <div className="launch-hero__sync-ring" aria-hidden="true"></div>
+            <div className="launch-hero__signal-grid" aria-hidden="true">
+              {signalItems.map((item, index) => (
+                <div
+                  key={item.label}
+                  className={`launch-hero__signal animate-in launch-hero__signal--${item.position}`}
+                  style={{ '--signal-index': index }}
+                >
+                  <span>{item.label}</span>
+                  <strong>{item.value}</strong>
+                  <p>{item.detail}</p>
+                </div>
+              ))}
             </div>
-            <div className="launch-floating launch-floating--right">
-              <span>Wearables</span>
-              <strong>Synced automatically</strong>
+            <div className="launch-hero__preview-shell">
+              <FitAiPreview />
             </div>
-            <FitAiPreview />
           </div>
           <p className="launch-hero__device-note">
-            Live app preview embedded directly into the landing page.
+            Real app preview in the middle, with the surrounding signals showing why the system
+            feels connected.
           </p>
         </div>
       </div>

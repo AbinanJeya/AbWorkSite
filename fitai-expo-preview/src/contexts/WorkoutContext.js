@@ -44,6 +44,21 @@ export function WorkoutProvider({ children }) {
         setActiveWorkout(prev => prev ? { ...prev, exerciseLogs } : null);
     }, []);
 
+    const loadPreviewWorkout = useCallback((previewSession) => {
+        if (!previewSession?.routine) return;
+
+        setActiveWorkout({
+            routine: previewSession.routine,
+            exerciseLogs: previewSession.exerciseLogs || [],
+            startTime: previewSession.startTime || Date.now(),
+        });
+        setIsExpanded(true);
+        setIsModalOpen(false);
+        setRestTimer(previewSession.restTimer ?? null);
+        setRestDuration(previewSession.restDuration ?? 0);
+        elapsedRef.current = 0;
+    }, []);
+
     return (
         <WorkoutContext.Provider value={{
             activeWorkout,
@@ -60,6 +75,7 @@ export function WorkoutProvider({ children }) {
             expandWorkout,
             endWorkout,
             updateExerciseLogs,
+            loadPreviewWorkout,
         }}>
             {children}
         </WorkoutContext.Provider>

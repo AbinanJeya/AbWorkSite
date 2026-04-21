@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
 import {
     View, Text, ScrollView, StyleSheet, TextInput, TouchableOpacity, Alert,
-    ActivityIndicator, Modal, Image
+    ActivityIndicator, Modal
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '../theme';
-import { MaterialIcons, AntDesign } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { saveUserProfile, getUserProfile, saveSettings, getSettings } from '../services/storage';
-import { signUp, signIn, signInWithGoogle, sendVerificationEmail, signOut } from '../services/auth';
-import { restoreFromCloud } from '../services/cloudSync';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
-
-GoogleSignin.configure({
-    webClientId: '802364713780-bjp3s75fdtb2h9hup2gsveg1i7m14qjr.apps.googleusercontent.com',
-});
+import { signUp, signIn, signInAsDemo, sendVerificationEmail, signOut, restorePreviewState } from '../services/auth';
 
 function hasCompletedProfile(profile) {
     if (!profile || typeof profile !== 'object') return false;
@@ -35,7 +29,7 @@ export default function WelcomeScreen({ navigation }) {
 
     const showError = (title, message) => setErrorModal({ visible: true, title, message });
 
-    const getFirebaseErrorMessage = (code) => {
+    const getAuthErrorMessage = (code) => {
         switch (code) {
             case 'auth/email-already-in-use': return 'An account with this email already exists.';
             case 'auth/invalid-email': return 'Please enter a valid email address.';
@@ -46,6 +40,25 @@ export default function WelcomeScreen({ navigation }) {
             case 'auth/too-many-requests': return 'Too many attempts. Please try again later.';
             case 'auth/network-request-failed': return 'Network error. Check your connection.';
             default: return 'Something went wrong. Please try again.';
+        }
+    };
+
+    const completeLogin = async (user) => {
+        const restoreResult = await restorePreviewState(user.uid);
+        const needsReauth = restoreResult?.needsHealthConnectReauth || false;
+
+        const settings = await getSettings();
+        const isHealthConnected = settings?.wearableConnections?.health_connect === true;
+
+        const existing = await getUserProfile() || {};
+        const hasOnboarded = hasCompletedProfile(existing);
+
+        if (needsReauth || !isHealthConnected) {
+            navigation.replace('HealthConnectOnboarding');
+        } else if (hasOnboarded) {
+            navigation.replace('Tabs');
+        } else {
+            navigation.replace('HealthConnectOnboarding');
         }
     };
 
@@ -92,28 +105,8 @@ export default function WelcomeScreen({ navigation }) {
                     return;
                 }
 
-                // Verified login: proceed normally. Trigger the massive Cloud Pull
-                const restoreResult = await restoreFromCloud(user.uid);
-                const needsReauth = restoreResult?.needsHealthConnectReauth || false;
-
-                // Check settings to see if Health Connect is actually enabled in their cloud data
-                const settings = await getSettings();
-                const isHealthConnected = settings?.wearableConnections?.health_connect === true;
-
-                // Now that the cloud sync has finished injecting into AsyncStorage, read 
-                // the local profile to see if they've ever completed Onboarding before
-                const existing = await getUserProfile() || {};
-                const hasOnboarded = hasCompletedProfile(existing);
-
-                if (needsReauth || !isHealthConnected) {
-                    // Force them to Health Connect onboarding if never connected or needs repair
-                    navigation.replace('HealthConnectOnboarding');
-                } else if (hasOnboarded) {
-                    navigation.replace('Tabs');
-                } else {
-                    navigation.replace('HealthConnectOnboarding');
-                }
-
+                // Verified login: proceed normally. Refresh the local preview state.
+                await completeLogin(user);
             } else {
                 // Handle Registration
                 const user = await signUp(email.trim(), password);
@@ -128,50 +121,20 @@ export default function WelcomeScreen({ navigation }) {
             }
         } catch (err) {
             console.error('Auth error:', err.code, err.message);
-            showError('Authentication Error', getFirebaseErrorMessage(err.code));
+            showError('Authentication Error', getAuthErrorMessage(err.code));
         } finally {
             setLoading(false);
         }
     };
 
-
-    const handleGoogleLogin = async () => {
+    const handleDemoLogin = async () => {
         setLoading(true);
         try {
-            await GoogleSignin.hasPlayServices();
-
-            // Force sign out to always show the account picker
-            try { await GoogleSignin.signOut(); } catch (e) { }
-
-            const userInfo = await GoogleSignin.signIn();
-            const idToken = userInfo.data?.idToken || userInfo.idToken;
-
-            if (!idToken) throw new Error("Could not retrieve Google ID Token");
-
-            const user = await signInWithGoogle(idToken);
-
-            // Verified login: proceed normally. Trigger the massive Cloud Pull
-            const restoreResult = await restoreFromCloud(user.uid);
-            const needsReauth = restoreResult?.needsHealthConnectReauth || false;
-
-            // Check settings to see if Health Connect is actually enabled
-            const settings = await getSettings();
-            const isHealthConnected = settings?.wearableConnections?.health_connect === true;
-
-            // Check if this newly restored local profile indicates they've finished setup
-            const existing = await getUserProfile() || {};
-            const hasOnboarded = hasCompletedProfile(existing);
-
-            if (needsReauth || !isHealthConnected) {
-                navigation.replace('HealthConnectOnboarding');
-            } else if (hasOnboarded) {
-                navigation.replace('Tabs');
-            } else {
-                navigation.replace('HealthConnectOnboarding');
-            }
+            const user = await signInAsDemo();
+            await completeLogin(user);
         } catch (err) {
-            console.error('Google auth error:', err);
-            showError('Google Sign-In Error', err.message || 'Something went wrong.');
+            console.error('Demo auth error:', err);
+            showError('Demo Login Error', err.message || 'Something went wrong.');
         } finally {
             setLoading(false);
         }
@@ -240,10 +203,10 @@ export default function WelcomeScreen({ navigation }) {
                     <View style={styles.dividerLine} />
                 </View>
 
-                {/* Google Sign-In */}
-                <TouchableOpacity style={styles.googleBtn} onPress={handleGoogleLogin} disabled={loading}>
-                    <Image source={require('../../assets/google-icon.png')} style={{ width: 20, height: 20 }} />
-                    <Text style={styles.socialLabel}>Continue with Google</Text>
+                {/* Demo Sign-In */}
+                <TouchableOpacity style={styles.googleBtn} onPress={handleDemoLogin} disabled={loading}>
+                    <MaterialIcons name="account-circle" size={20} color={colors.text} />
+                    <Text style={styles.socialLabel}>Continue with Demo Account</Text>
                 </TouchableOpacity>
 
                 {/* Toggle Login / Signup */}

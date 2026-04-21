@@ -17,7 +17,6 @@ export default function FooterSection() {
 
         <div className="launch-footer__links">
           <a href="#proof">Why AbWork</a>
-          <a href="#features">Features</a>
           <a href="#showcase">Experience</a>
           <a href="#trust">Product Proof</a>
           <a href="#download">Download APK</a>

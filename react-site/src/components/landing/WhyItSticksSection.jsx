@@ -1,8 +1,32 @@
-function StickCard({ title, body }) {
+const stickCards = [
+  {
+    metric: '2 tap feel',
+    title: 'Fast daily check-ins',
+    body: 'When logging feels light, staying on plan feels easier to repeat.',
+  },
+  {
+    metric: 'Momentum visible',
+    title: 'Progress you can notice fast',
+    body: 'Clear rings, summaries, and streak signals make effort feel real.',
+  },
+  {
+    metric: 'Low friction',
+    title: 'A calmer loop to come back to',
+    body: 'Predictable screens lower resistance and make the next open more likely.',
+  },
+];
+
+function StickCard({ metric, title, body }) {
   return (
     <article className="stick-card animate-in">
+      <span className="stick-card__metric">{metric}</span>
       <h3>{title}</h3>
       <p>{body}</p>
+      <div className="stick-card__bars" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </article>
   );
 }
@@ -13,26 +37,22 @@ export default function WhyItSticksSection() {
       <div className="launch-shell">
         <div className="section-header animate-in">
           <span className="section-tag">WHY IT STICKS</span>
-          <h2 className="section-title">Premium design matters because consistency is emotional.</h2>
+          <h2 className="section-title">Consistency gets easier when the loop feels rewarding.</h2>
           <p className="section-subtitle">
-            People keep using tools that feel rewarding, clear, and trustworthy. AbWork should sell
-            that feeling just as much as its feature set.
+            This should land as a product you want to reopen, not a tool you have to remember to
+            manage.
           </p>
         </div>
 
         <div className="stick-grid">
-          <StickCard
-            title="Quicker check-ins lower the odds of falling off"
-            body="Fast logging and clear next steps make staying on plan feel lighter week after week."
-          />
-          <StickCard
-            title="Visible momentum makes effort easier to repeat"
-            body="Rings, summaries, and session history turn progress into something you can notice fast."
-          />
-          <StickCard
-            title="A calm interface reduces resistance"
-            body="When the app feels clean and predictable, opening it again takes less mental effort."
-          />
+          {stickCards.map((card) => (
+            <StickCard
+              key={card.title}
+              metric={card.metric}
+              title={card.title}
+              body={card.body}
+            />
+          ))}
         </div>
       </div>
     </section>

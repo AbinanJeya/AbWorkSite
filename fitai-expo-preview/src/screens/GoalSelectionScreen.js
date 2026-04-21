@@ -7,7 +7,7 @@ import Slider from '@react-native-community/slider';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '../theme';
 import { saveUserProfile, getUserProfile, saveSettings, getSettings } from '../services/storage';
-import { getCurrentUser, saveProfileToCloud } from '../services/auth';
+import { getCurrentUser, savePreviewProfile } from '../services/auth';
 
 export default function GoalSelectionScreen({ route, navigation }) {
     const { colors, isDark } = useTheme();
@@ -65,7 +65,7 @@ export default function GoalSelectionScreen({ route, navigation }) {
             // 3. Save ALL profile data to server (fixes name resetting bug)
             const user = getCurrentUser();
             if (user?.uid) {
-                await saveProfileToCloud(user.uid, fullProfile);
+                await savePreviewProfile(user.uid, fullProfile);
             }
 
             // Navigate accordingly based on where the user came from

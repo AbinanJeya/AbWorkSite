@@ -3,7 +3,7 @@ import { Linking, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { getSettings, saveSettings } from '../services/storage';
-import { forceCloudBackup } from '../services/cloudSync';
+import { forceLocalBackup } from '../services/localSync';
 import { useTranslation } from '../services/i18n';
 import { createSettingsStyles, SettingsScreenShell } from '../components/SettingsShared';
 import { useTheme } from '../theme';
@@ -46,7 +46,7 @@ export default function SettingsAIScreen() {
             });
             if (response.ok) {
                 setApiKeyStatus('valid');
-                forceCloudBackup(true).catch(() => {});
+                forceLocalBackup().catch(() => {});
             } else {
                 setApiKeyStatus('invalid');
                 setTimeout(() => setApiKeyStatus(null), 3000);
@@ -69,7 +69,7 @@ export default function SettingsAIScreen() {
             const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${geminiKey.trim()}`);
             if (response.ok) {
                 setGeminiKeyStatus('valid');
-                forceCloudBackup(true).catch(() => {});
+                forceLocalBackup().catch(() => {});
             } else {
                 setGeminiKeyStatus('invalid');
                 setTimeout(() => setGeminiKeyStatus(null), 3000);
